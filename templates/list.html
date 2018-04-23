@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}
+ Welcome to G4US sharp
+{% endblock %}
+
+
+{% block content %}
+<div class="mb-4">
+	<a href="#" class="btn btn-primary">Home</a>
+</div>
+<table class="table">
+	<thead class="thead-inverse">
+		<tr>
+			<th>Post</th>
+			<th>Date Posted</th>
+			<th>Replies</th>
+			<th>Views</th>
+		</tr>
+    </thead>
+    <tbody>
+    {% for post in posts %}
+          <tr>
+            <td>{{ post.subject }}</td>
+            <td>{{ post.created_date }}</td>
+            <td>{{ post.replies }}</td>
+            <td>{{ post.views }}</td>
+          </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
