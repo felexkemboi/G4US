@@ -6,35 +6,28 @@
 
 
 {% block content %}
-<div class="mb-4">
-	<a href="{% url 'index' %}" class="btn btn-primary">Home</a>
+<div class="modal-body row">
+  <div class="col-md-4">
+    <div class="service-box mt-5 mx-auto">
+      <h3 class="mb-3">Weekly Posts</h3>
+       {% for post in posts %}
+        <ul>
+          <li><a href="{% url 'detail' pk=post.pk %}">{{ post.subject }}</a></li>
+        </ul>
+       {% endfor %}
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="service-box mt-5 mx-auto">
+      <h3 class="mb-3">Ebooks on offer</h3>
+      <p class="text-muted mb-0"></p>
+    </div>
+  </div>
+  <div class="col-md-4">
+     <div class="service-box mt-5 mx-auto">
+      <h3 class="mb-3">Online Courses</h3>
+      <p class="text-muted mb-0"></p>
+    </div> 
+  </div>
 </div>
-<section style="background-color: whitesmoke;">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-4 col-md-6 text-center">
-            <div class="service-box mt-5 mx-auto">
-              <h3 class="mb-3">Weekly Posts</h3>
-                {% for post in posts %}
-                <ul>
-                   <li><a href="#">{{ post.subject }}</a></li>
-                </ul>
-                {% endfor %}
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 text-center">
-            <div class="service-box mt-5 mx-auto">
-              <h3 class="mb-3">Monthly Magazines</h3>
-              <p class="text-muted mb-0"></p>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 text-center">
-            <div class="service-box mt-5 mx-auto">
-              <h3 class="mb-3">Online Courses</h3>
-              <p class="text-muted mb-0"></p>
-            </div>
-          </div>
-      </div>
-    </section>
-     
 {% endblock %}

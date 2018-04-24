@@ -1,7 +1,7 @@
-from .models import Post
+from .models import Post,Comment
 from django.utils import timezone
 from django.shortcuts import render,get_object_or_404,redirect,render
-from .forms	import	NewPostForm,SignUpForm
+from .forms	import	NewPostForm,SignUpForm,CommentForm
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -27,7 +27,7 @@ def delete(request,pk):
 
 
 
-def	new(request):
+def	new_post(request):
 	if	request.method	==	"POST":
 		form	=	NewPostForm(request.POST)
 		if	form.is_valid():
@@ -35,10 +35,10 @@ def	new(request):
 			#post.author	=	request.user
 			post.created_date	=	timezone.now()
 			post.save()
-		return	redirect('posts',	pk=post.pk)
+		return	redirect('home')
 	else:
 		form	=	NewPostForm()
-		return	render(request,	'new.html',	{'form':	form})
+		return	render(request,	'new_post.html',	{'form':	form})
 
 
 def edit(request,pk):
@@ -55,3 +55,22 @@ def edit(request,pk):
 		form = NewPostForm(instance = post )
 
 	return render(request,'edit.html',{'form': form })
+
+def comment(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.author= request.user
+            comment.save()
+            return redirect('detail', pk=post.pk)
+    else:
+        form = CommentForm()
+    return render(request, 'comment.html', {'form': form})
+
+def remove(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    comment.delete()
+    return redirect('detail', pk=comment.post.pk)

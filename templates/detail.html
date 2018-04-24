@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<section>
+<!--<section>-->
 <div class="row">
-<div class="mb-4">
-	<a href="{% url 'index' %}" class="btn btn-primary">Home</a>
+<div class="mb-2">
+ 	<a class="btn btn-default" href="{% url 'posts'	%}">Back to Posts</a>
 </div>
 </div>
+<div style="width: 900px;margin: 0 auto;">
 <div class="row">
  <div class = "post">
  	<h1>{{ post.subject }}</h1>
@@ -16,11 +17,26 @@
  	  	{{ post.created_date }}
  	  </div>
  	 </p>
- 	{%	if	user.is_staff	%}
-	<a	class="btn btn-default" href="{% url 'edit' pk=post.pk	%}"><span class="glyphicon glyphicon-edit">Edit</span></a><a	class="btn btn-default" href="{% url 'delete' pk=post.pk	%}"><span class="glyphicon glyphicon-trash">Delete</span></a>
+ 	 {%	if	user.is_staff	%}
+	<a	class="btn btn-default" href="{% url 'edit' pk=post.pk	%}"><span class="glyphicon glyphicon-pencil">Edit</span></a><a	class="btn btn-default" href="{% url 'delete' pk=post.pk	%}"><span class="glyphicon glyphicon-trash">Delete</span></a>
    {% endif	%}
-   <h3>Comments</h3>
+ 	<hr>
+ 	<a class="btn btn-default" href="{% url 'comment' pk=post.pk	%}">Add Comment</a>
+   {% for comment in post.comments.all %}
+        <div class="comment">
+		  <p style="color: #73008c;">Posted by: <i><b>{{ comment.author }} </b></i> on {{ comment.created_date }}</p>
+		  <p>{{ comment.text }}</p>
+		  {% if user.is_staff %}
+		    <a class="btn btn-default" href="{% url 'remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span>delete</a>
+		  {% endif%}
+	    </div>
+    {% empty %}
+    <p>No comments here yet</p>
+  {% endfor %}
+
  </div>
 </div>
-</section>
+<!--</section>-->
+</div>
 {% endblock %}
+

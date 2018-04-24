@@ -7,7 +7,6 @@
 <form method="post" class="mb-4" novalidate>
     {% csrf_token %}
     {% include 'includes/form.html' %}
-    <button type="submit" class="btn btn-success">Save changes</button>
-    <a href="{% url 'home' %}" class="btn btn-danger" role="button">Cancel</a>
-  </form>
+    <button type="submit" class="btn btn-success">Send</button>
+</form>
 {% endblock %}
