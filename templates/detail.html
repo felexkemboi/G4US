@@ -1,16 +1,26 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<section>
+<div class="row">
+<div class="mb-4">
+	<a href="{% url 'index' %}" class="btn btn-primary">Home</a>
+</div>
+</div>
+<div class="row">
  <div class = "post">
- 	<h1>{{ post.title }}</h1>
- 	<p>{{ post.text|linebreaksbr }}</p>
- 	{% if post.published_date %}
- 	  <div class = "date">
- 	  	{{ post.published_date }}
+ 	<h1>{{ post.subject }}</h1>
+ 	<p>{{ post.message|linebreaksbr }}</p>
+ 	<p>
+ 	  <div class ="text-muted">
+ 	  	{{ post.created_date }}
  	  </div>
- 	{% endif %}
+ 	 </p>
  	{%	if	user.is_staff	%}
-	<a	class="btn btn-default" href="{% url 'edit' pk=post.pk	%}"><span class="glyphicon glyphicon-edit">Edit</span></a>
+	<a	class="btn btn-default" href="{% url 'edit' pk=post.pk	%}"><span class="glyphicon glyphicon-edit">Edit</span></a><a	class="btn btn-default" href="{% url 'delete' pk=post.pk	%}"><span class="glyphicon glyphicon-trash">Delete</span></a>
    {% endif	%}
+   <h3>Comments</h3>
  </div>
+</div>
+</section>
 {% endblock %}

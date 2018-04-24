@@ -10,12 +10,13 @@ class Post(models.Model):
 	message =      models.CharField(max_length=280)
 	created_date = models.DateTimeField(default=timezone.now)
 
-	def publish(self):
+
+	"""def publish(self):
 		self.published_date = timezone.now()
-		self.save()
+		self.save()"""
 
 	def get_absolute_url(self):
-		return reverse('detail', args =[str(self.id)])
+		return reverse('detail', args = [str(self.id)])
 
 	def __str__(self):
 		return self.subject
@@ -29,7 +30,7 @@ class Comment(models.Model):
 		)
 
 	def get_absolute_url(self):
-		return reverse('list')
+		return reverse('home')
 
 	def __str__(self):
 		return self.comment

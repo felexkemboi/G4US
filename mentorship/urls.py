@@ -19,7 +19,7 @@ from posts import views
 
 urlpatterns = [
     path('admin/',      admin.site.urls),
-    path('',            views.home,     name = 'home'),
+    path('',            views.index,     name = 'index'),
     path('accounts/',   include('accounts.urls')),
     path('magazines/',  include('magazines.urls')),
     path('courses/',    include('courses.urls')),
