@@ -1,4 +1,5 @@
 from .models import Post,Comment
+from ebooks.models import Document
 from django.utils import timezone
 from django.shortcuts import render,get_object_or_404,redirect,render
 from .forms	import	NewPostForm,SignUpForm,CommentForm
@@ -10,12 +11,13 @@ def index(request):
 	return render(request,'relax.html', {})
 
 def home(request):
-	posts = Post.objects.filter(created_date__lte=timezone.now()).order_by('created_date')
-	return render(request,'home.html', {'posts': posts})
+	ebook = Document.objects.all()
+	posts = Post.objects.all() #order_by('created_date')
+	return render(request,'home.html', {'posts': posts,'ebooks':ebook,})
 
 def posts(request):
-	posts = Post.objects.filter(created_date__lte=timezone.now()).order_by('created_date')
-	return render(request, 'posts.html', {'posts':	posts})
+	posts =  Post.objects.order_by('created_date')
+	return render(request, 'posts.html', {'posts':posts,})
 
 def detail(request,pk):
 	post = get_object_or_404(Post,pk= pk )

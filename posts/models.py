@@ -10,10 +10,9 @@ class Post(models.Model):
 	message =      models.CharField(max_length=280)
 	created_date = models.DateTimeField(default=timezone.now)
 
-
-	"""def publish(self):
-		self.published_date = timezone.now()
-		self.save()"""
+	def create(self):
+		self.create_date = timezone.now()
+		self.save()
 
 	def get_absolute_url(self):
 		return reverse('detail', args = [str(self.id)])
