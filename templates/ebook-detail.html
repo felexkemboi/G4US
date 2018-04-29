@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+  <div class="mb-2">
+ 	<a class="btn btn-default" href="{% url 'posts'	%}">Back to Posts</a>
+  </div>
+</div>
+<div style="width: 900px;margin: 0 auto;">
+<div class="row">
+  <div class = "post">
+	 <h1>{{ document.name }}</h1>
+	 <p>{{ doocument.description }}</p>
+	 <p>
+	 <div class ="text-muted">
+	 	{{ document.created_at }}
+	 </div>
+	 	   <!--<p><img scr="{{ media }}media/{{ document.file }}"></p>-->
+	 <p><a href="#">picha</a></p>   
+   </div>
+</div>
+{% endblock %}
+

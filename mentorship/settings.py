@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'oehsbnvim%8cj)m+sjk3^^b(n-acr9&3#&6uj5zj(2$-an&3!i'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -78,13 +78,13 @@ WSGI_APPLICATION = 'mentorship.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+import dj_database_url
 
+  DATABASES = {
+      'default': dj_database_url.config(
+          default='sqlite:////{0}'.format(os.path.join(BASE_DIR, 'db.sqlite3'))
+      )
+  }
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -122,23 +122,27 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
-STATIC_URL = '/static/'
-MEDIA_ROOT = '/media/'
 
-#STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
-STATICFILES_DIRS = (
-     os.path.join(BASE_DIR, 'static'),
-)
+#MEDIA_ROOT = '/media/'
 
-STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static')
+#STATICFILES_DIRS = (
+ #    os.path.join(BASE_DIR, 'static'),
+#)
+
+#STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static')
 #MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media')
 
-#MEDIA_URL = '/media/'
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "static")),
+STATIC_URL = '/static/'
 
-
+#document_root = os.path.join(BASE_DIR, 'media')
 
 LOGIN_REDIRECT_URL = 'home'
 
 LOGOUT_REDIRECT_URL = 'index'
+

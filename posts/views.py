@@ -31,15 +31,15 @@ def delete(request,pk):
 
 def	new_post(request):
 	if	request.method	==	"POST":
-		form	=	NewPostForm(request.POST)
+		form = NewPostForm(request.POST)
 		if	form.is_valid():
-			post	=	form.save(commit=False)
+			post = form.save(commit=False)
 			#post.author	=	request.user
 			post.created_date	=	timezone.now()
 			post.save()
 		return	redirect('home')
 	else:
-		form	=	NewPostForm()
+		form = NewPostForm()
 		return	render(request,	'new_post.html',	{'form':	form})
 
 
