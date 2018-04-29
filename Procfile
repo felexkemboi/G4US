@@ -1,1 +1,1 @@
-web: gunicorn mentorship.wsgi
+web: gunicorn g4us.wsgi
