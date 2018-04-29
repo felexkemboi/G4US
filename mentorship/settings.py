@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'mentorship.wsgi.application'
 
 import dj_database_url
 
-  DATABASES = {
+DATABASES = {
       'default': dj_database_url.config(
           default='sqlite:////{0}'.format(os.path.join(BASE_DIR, 'db.sqlite3'))
       )
@@ -136,8 +136,8 @@ USE_TZ = True
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = (os.path.join(BASE_DIR, "static")),
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static')),
 STATIC_URL = '/static/'
 
 #document_root = os.path.join(BASE_DIR, 'media')
