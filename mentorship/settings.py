@@ -25,7 +25,7 @@ SECRET_KEY = 'oehsbnvim%8cj)m+sjk3^^b(n-acr9&3#&6uj5zj(2$-an&3!i'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [‘0.0.0.0’, ‘localhost’, 'https://pyvision.herokuapp.com/']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
