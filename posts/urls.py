@@ -1,6 +1,7 @@
 
 from django.urls import path
 from . import views
+from . views import PostViewSet
 
 urlpatterns = [
   path('',                        views.posts,      name = 'posts'),
@@ -11,6 +12,7 @@ urlpatterns = [
   path('<int:pk>/',               views.detail,     name = 'detail'),
   path('<int:pk>/comment',        views.comment,    name = 'comment'),
   path('<int:pk>/comment/remove', views.remove,    name = 'remove'),
+  path('api/', PostViewSet.as_view({'get': 'list'}),             name="songs-all")
 
 
 ]

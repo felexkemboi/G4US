@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'posts',
     'courses',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -81,11 +82,24 @@ WSGI_APPLICATION = 'mentorship.wsgi.application'
 
 import dj_database_url
 
+"""
 DATABASES = {
       'default': dj_database_url.config(
           default='sqlite:////{0}'.format(os.path.join(BASE_DIR, 'db.sqlite3'))
       )
   }
+
+"""
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql', 
+        'NAME': 'g4us',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+        'PORT': '3306',
+    }
+}
   
 
 # Password validation

@@ -5,6 +5,7 @@ from django.shortcuts import render,get_object_or_404,redirect,render
 from .forms	import	NewPostForm,SignUpForm,CommentForm
 from django.urls import reverse_lazy
 from django.views import generic
+from .serializers import PostSerialiser
 
 # Create your views here.
 def index(request):
@@ -76,3 +77,12 @@ def remove(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
     comment.delete()
     return redirect('detail', pk=comment.post.pk)
+
+
+from rest_framework import viewsets
+from rest_framework import generics
+
+
+class PostViewSet(viewsets.ModelViewSet):
+    queryset = Post.objects.all()
+    serializer_class = PostSerialiser
